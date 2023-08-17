@@ -60,13 +60,9 @@ public class Katana : MonoBehaviour
     }
     public void Flip()
     {
-        // objenin hizi sifirlanir
         rb.velocity = new Vector3(0, 0, 0);
-        //bir nesnenin açýsal hýzýný sýfýrlar Açýsal hýz bir nesnenin bir eksen etrafýnda ne kadar hýzlý döndüðünü ölçen bir vektördür
         rb.angularVelocity = Vector3.zero;
-        //anlik bir ivme verir, bu kodu biz yukari dogru ve ileri dogru gitmesinin sagliyoruz bu kod ile
         rb.AddForce(force, ForceMode.Impulse);
-        // bir nesneye x ekseninde anlýk bir tork uygular. Tork, bir nesnenin dönmesine neden olan bir kuvvettir
         rb.AddTorque(torque, 0f, 0f, ForceMode.Impulse);
     }
 
@@ -79,9 +75,7 @@ public class Katana : MonoBehaviour
     }
     private void Move()
     {
-        //nesnenin x eksenindeki dönüþ açýsýný tutar,editörde gösterilen deðerlere göre hesaplanýr
         realRotationAmount = UnityEditor.TransformUtils.GetInspectorRotation(gameObject.transform).x;
-        //asagi dusme hizini sabitliyor
         if (rb.velocity.magnitude > maxHorizontalVelocity)
         {
             rb.velocity = rb.velocity.normalized * maxHorizontalVelocity;
@@ -91,9 +85,7 @@ public class Katana : MonoBehaviour
 
     public void PushBack()
     {
-        // objenin hizi sifirlanir
         rb.velocity = new Vector3(0, 0, 0);
-        //geriye dogru anlik bir ivme verir
         rb.AddForce(forcePB, ForceMode.Impulse);
     }
 
@@ -113,7 +105,6 @@ public class Katana : MonoBehaviour
         }
     }
 
-    //Bu kod, belirli bir süre boyunca iki katman arasýndaki çarpýþmalarý yok sayar
     IEnumerator timer()
     {
         Physics.IgnoreLayerCollision(6, 7);
